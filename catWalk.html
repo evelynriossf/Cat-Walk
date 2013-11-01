@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>Cat Walk</title>
+ </head>
+ <body>
+  
+  <img id="kittyCat"; style="position:absolute;" src="http://www.anniemation.com/clip_art/images/cat-walk.gif">
+  
+ </body>
+</html>
+
+<script>
+var kittyCat = document.getElementById('kittyCat');
+kittyCat.style.left = "-300px";
+var center = ((Math.floor((window.innerWidth)/20)*10) - 250);
+var i=0;
+var direction = 10;
+var motion;
+function mainProgram() {
+if (parseInt(kittyCat.style.left) != center){
+	   motion = setInterval(catWalk, 40);
+	    }
+else dancingCat(); 
+}
+
+function catWalk () {
+	kittyCat.style.left = parseInt(kittyCat.style.left) + direction + 'px';
+	if (parseInt(kittyCat.style.left) > window.innerWidth){
+		direction = -10;
+		kittyCat.style.top = "200px";
+		kittyCat.style.webkitTransform = 'scaleX(-1)';
+	} else if (parseInt(kittyCat.style.left) < -300){
+		direction = 10;
+		kittyCat.style.top = "0px";
+		kittyCat.style.webkitTransform = 'scaleX(1)';
+
+	}
+	else if (parseInt(kittyCat.style.left) === center){
+		clearInterval(motion);
+		mainProgram();
+	}
+}
+
+function dancingCat() {
+	kittyCat.src = "http://www.nnhs65.com/RWS/ani-dancing-cat.gif";
+	var oldDirection = direction;
+	direction = 0;
+	if (i < 100) {
+		var timer=setInterval(function(){
+			i++;
+			console.log(i);
+			if (i >= 100) {
+				kittyCat.src = "http://www.anniemation.com/clip_art/images/cat-walk.gif";
+				direction = oldDirection;
+				console.log(direction);
+				i = 0;
+				clearInterval(timer);
+				kittyCat.style.left = parseInt(kittyCat.style.left) + direction + 'px';
+				mainProgram();
+				}
+		} ,100);
+    }
+}
+
+mainProgram();
+
+</script>
