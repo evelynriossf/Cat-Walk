@@ -1,4 +1,4 @@
 Cat-Walk
 ========
 
-Complex looping animation written in pure Javascript.
+Complex looping animation written in pure JavaScript.
